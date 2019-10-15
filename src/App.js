@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import dataJSON from "./data.json";
 import Img from "./components/img";
-import logo from "./logo.svg";
 import "./App.css";
 
 function App() {
@@ -13,8 +12,23 @@ function App() {
   const [status, setStatusState] = useState("Click any button to play!");
   const [cssClass, setClassState] = useState("flashy");
   function handleClick(id) {
-    // do things
-    
+    setClassState("Flop");
+    const index = data.findIndex(x => x.name === id);
+    if (data[index].isNotChosen) {
+      data[index].isNotChosen = false;
+      setScoreState(score + 1);
+      setStatusState("Correct Answer!");
+      setDataState(data.sort(() => Math.random() - 0.5));
+      if (score >= leaderBoard) setLeaderState(score + 1);
+    } else {
+      setScoreState(0);
+      setStatusState("Game Over!");
+      data.map(a => (a.isNotChosen = true));
+      setDataState(data.sort(() => Math.random() - 0.5));
+    }
+    setTimeout(() => {
+      setClassState("flashy");
+    }, 5);
   }
   return (
     <div className="App">
@@ -26,8 +40,8 @@ function App() {
         <h2 className={cssClass}> {status}</h2>
       </header>
       <div className="imgDiv">
-        {data.map(img => (
-          <Img img={img.img} id={img.name} onClick={handleClick} />
+        {data.map((img, i) => (
+          <Img key={i} img={img.img} id={img.name} onClick={handleClick} />
         ))}
       </div>
     </div>

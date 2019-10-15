@@ -8,6 +8,10 @@ body {
   padding: 15px;
   width: 95%;
   margin: auto;
+  margin-bottom: 25px;
+  border-radius: 0 0 15px 15px;
+  margin: auto;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
 
@@ -22,4 +26,28 @@ body {
   margin-left: 5px;
   display: inline-block;
   color: white;
+}
+
+
+.imgDiv {
+  margin-top: 15px;
+}
+
+.flashy {
+  animation: flashyText 2s 1;
+}
+
+@keyframes flashyText {
+  0% {
+    color: red;
+  }
+  25% {
+    color: orangered;
+  }
+  50% {
+    color: green;
+  }
+  100% {
+    color: white;
+  }
 }
